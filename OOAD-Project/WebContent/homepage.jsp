@@ -14,28 +14,42 @@ pageEncoding="UTF-8"%>
 
 <title>Homepage</title>
 
+<script type="text/javascript">
+
+  function logout(){
+  window.open("logout.do","_self");
+  }
+
+</script>
+
 </head>
 
 <body>
 
 <h1>登录成功</h1>
 
-欢迎${requestScope.username}!
-<br>
+欢迎${username}!
+<br><br>
 
+<form method="post" action="logout.do">
+    <input type="submit" value="退出"/>
+</form>
 
+<br><br>
+<table border="1">
 <c:forEach items="${couseList}" var="course">
 		
         <tr>
             <td>${course.id}</td>
-            <td>${course.name}</td>
+            <td><a href="course.do?id=${course.id}">${course.name}</a></td>
             <td>${course.number}</td>
             <td>${course.description}</td>
             <td>${course.track}</td>
+            <td>${course.commentNum}</td>
         </tr>
         <br>
 </c:forEach>
-
+</table>
 </body>
 
 </html>

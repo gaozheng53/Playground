@@ -6,6 +6,7 @@ public class Course {
 	private long number;
 	private String description;
 	private String track;
+	private long commentNum;
 	
 	
 	public long getId() {
@@ -37,6 +38,12 @@ public class Course {
 	}
 	public void setTrack(String track) {
 		this.track = track;
+	}
+	public long getCommentNum() {
+		return commentNum;
+	}
+	public void setCommentNum(long commentNum) {
+		this.commentNum = commentNum;
 	}
 	
 	

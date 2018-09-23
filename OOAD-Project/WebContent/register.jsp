@@ -52,7 +52,6 @@
 		}
 	</script>
 	
-	<p>The request attribute: ${message}</p>
 
 	<form action="register.do" method="post">
 

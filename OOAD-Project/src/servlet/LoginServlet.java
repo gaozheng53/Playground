@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.HomepageDAO;
+import dao.CourseDAO;
 import dao.UserDAO;
 import po.Course;
 
@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
 
 	// doGet方法自动跳转到doPost()方法
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		this.doPost(req, resp);
+		this.doPost(req, resp);
 	}
 
 	@Override
@@ -35,10 +35,8 @@ public class LoginServlet extends HttpServlet {
 		String username = req.getParameter("username");// 从jsp中获取usernmae
 		String password = req.getParameter("password");// 从jsp中获取password
 		if (UserDAO.checkLogin(username, password)) { // dao层中判断，如果为true，跳转到欢迎界面
-			req.setAttribute("username", username);
-			List<Course> couseList = HomepageDAO.displayCourses();
-			req.setAttribute("couseList", couseList);
-			req.getRequestDispatcher("/WEB-INF/homepage.jsp").forward(req, resp);
+			req.getSession().setAttribute("username", username);
+			req.getRequestDispatcher("/homepage.do").forward(req, resp);
 		} else { // 如果为false，跳转到登录界面，并返回错误信息.
 			req.setAttribute("inf", "你的账号或密码错误，请重新登录");
 			req.getRequestDispatcher("login.jsp").forward(req, resp);
